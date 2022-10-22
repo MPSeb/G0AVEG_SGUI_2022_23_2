@@ -21,7 +21,7 @@ namespace G0AVEG_ADT_2022_23_1.Data
             optionsBuilder.EnableSensitiveDataLogging().UseLazyLoadingProxies();
 
 
-            optionsBuilder.UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\CarsDB.mdf;Integrated Security=True");
+            optionsBuilder.UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Data.mdf;Integrated Security=True");
 
             base.OnConfiguring(optionsBuilder);
         }
