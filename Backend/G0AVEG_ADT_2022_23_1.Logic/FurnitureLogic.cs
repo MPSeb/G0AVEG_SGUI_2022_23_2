@@ -120,7 +120,7 @@ namespace G0AVEG_ADT_2022_23_1.Logic
 
         public IEnumerable<Furniture> GetFurnitures()
         {
-            throw new NotImplementedException();
+            return _furnitureRepository.GetAll();
         }
 
         public void RemoveFurniture(int id)
@@ -133,12 +133,97 @@ namespace G0AVEG_ADT_2022_23_1.Logic
             _furnitureRepository.Update(entry);
         }
 
+        //Non-CRUD methods
+
+        public int[] woodsIdsForRetailer(int roomId)
+        {
+            IEnumerable<Furniture> furnitures = _furnitureRepository.GetAll().ToList().Where(f => f.RetailerId == roomId);
+            IEnumerable<Wood> woods = _woodRepository.GetAll().ToList();
+            int add = 0;
+            for (int i = 1; i < woods.Count(); i++)
+            {
+                if (furnitures.Where(f => f.WoodUsed == i).Count() != 0)
+                {
+                    add++;
+                }
+            }
+            int[] array = new int[add];
+            int counter = 0;
+            for (int i = 1; i < woods.Count(); i++)
+            {
+                if (furnitures.Where(f => f.WoodUsed == i).Count() != 0)
+                {
+                    array[counter] = i;
+                    counter++;
+                }
+            }
+            return array;
+        }
+
+        public bool DoesRetailerSellWood(int retailerId, int woodId)
+        {
+            Retailer retailer = _retailerRepository.GetRetailer(retailerId);
+            bool result = false;
+            foreach (Furniture f in retailer.furnitures)
+            {
+                if(f.WoodUsed == woodId)
+                {
+                    result = true;
+                }
+            }
+            return result;
+        }
+
+        public int avgWoodPriceOfRetailer(int retailerId)
+        {
+            Retailer retailer = _retailerRepository.GetRetailer(retailerId);
+            int count = 0;
+            int price = 0;
+            foreach (Furniture f in retailer.furnitures)
+            {
+                count++;
+                if (f.WoodUsed != null)
+                {
+                    int woodId = f.WoodUsed.Value;
+                    Wood w = _woodRepository.GetWood(woodId);
+                    price += w.Price;
+                }
+            }
+            return price / count;
+        }
+
+        public double AverageFurnPerRetailer()
+        {
+            int furnNums = _furnitureRepository.GetAll().Count();
+            int retailerNums = _retailerRepository.GetAll().Count();
+            double value = furnNums / retailerNums;
+            return value;
+        }
 
 
+        public int WoodUsedInFurnBelowPrice(int priceLim)
+        {
+            IEnumerable<Wood> woods = _woodRepository.GetAll().ToList().Where(t => t.Price < priceLim);
+            int number = _woodRepository.GetAll().ToList().Count();
+            IEnumerable<Furniture> furnitures = _furnitureRepository.GetAll().ToList();
+            int[] array = new int[number];
+            int counter = 0;
+            for (int i = 0; i <= number; i++)
+            {
+                if (woods.Where(w => w.Id == i).Count() != 0)
+                {
+                    array[counter] = i;
+                    counter++;
+                }
+            }
+            int result = 0;
+            for (int i = 0; i <= counter; i++)
+            {
+                result = result + furnitures.Where(f => f.WoodUsed == array[i]).Count();
+            }
+            return result;
 
-
-
-
+        }
 
     }
 }
