@@ -46,10 +46,14 @@ namespace G0AVEG_ADT_2022_23_1.Repository
 
             var FurnitureToUpdate = GetFurniture(entity.Id);
             FurnitureToUpdate.Name = entity.Name;
-            FurnitureToUpdate.Retailers = entity.Retailers;
+            FurnitureToUpdate.retailer = entity.retailer;
             FurnitureToUpdate.WoodUsed = entity.WoodUsed;
             dbContext.SaveChanges();
         }
 
+        public IQueryable<Furniture> GetAll()
+        {
+            return dbContext.Furnitures;
+        }
     }
 }

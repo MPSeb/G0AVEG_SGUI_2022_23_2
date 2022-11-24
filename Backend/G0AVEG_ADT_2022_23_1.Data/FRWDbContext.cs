@@ -7,14 +7,14 @@ namespace G0AVEG_ADT_2022_23_1.Data
 {
     public class FRWDbContext : DbContext
     {
-        public FRWDbContext()
-        {
-            Database.EnsureCreated();
-        }
 
         public DbSet<Wood> Woods { get; set; }
         public DbSet<Furniture> Furnitures { get; set; }
         public DbSet<Retailer> Retailers { get; set; }
+        public FRWDbContext()
+        {
+            Database.EnsureCreated();
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -36,8 +36,10 @@ namespace G0AVEG_ADT_2022_23_1.Data
             );
 
             modelBuilder.Entity<Furniture>(x =>
-            x.HasMany(i => i.Retailers)
+            x.HasOne(i => i.retailer)
             .WithMany(y => y.furnitures)
+            .HasForeignKey(x => x.RetailerId)
+            .OnDelete(DeleteBehavior.NoAction)
             );
 
 
@@ -50,27 +52,27 @@ namespace G0AVEG_ADT_2022_23_1.Data
             var Furnitures = new List<Furniture>()
             {
 
-                new Furniture()  {Id = 1, Name = "Cupboard", WoodUsed = 2},
-                new Furniture()  {Id = 2, Name = "Kitchen Cabinet", WoodUsed = 4},
-                new Furniture()  {Id = 3, Name = "Countertop", WoodUsed = 6},
+                new Furniture()  {Id = 1, Name = "Cupboard", WoodUsed = 2, retailer = Chef},
+                new Furniture()  {Id = 2, Name = "Kitchen Cabinet", WoodUsed = 4, retailer = Fella},
+                new Furniture()  {Id = 3, Name = "Countertop", WoodUsed = 6, retailer = Leg},
 
-                new Furniture()  {Id = 4, Name = "Drawer", WoodUsed = 5},
-                new Furniture()  {Id = 5, Name = "Wardrobe", WoodUsed = 3},
-                new Furniture()  {Id = 6, Name = "Bed", WoodUsed = 1},
-                new Furniture()  {Id = 7, Name = "Closet", WoodUsed = 6},
+                new Furniture()  {Id = 4, Name = "Drawer", WoodUsed = 5, retailer = Leg},
+                new Furniture()  {Id = 5, Name = "Wardrobe", WoodUsed = 3, retailer = Chef},
+                new Furniture()  {Id = 6, Name = "Bed", WoodUsed = 1, retailer = Leg},
+                new Furniture()  {Id = 7, Name = "Closet", WoodUsed = 6, retailer = Chef},
 
-                new Furniture()  {Id = 8, Name = "Coffee Table", WoodUsed = 4},
-                new Furniture()  {Id = 9, Name = "Liquor Cabinet", WoodUsed = 2},
-                new Furniture()  {Id = 10, Name = "Couch", WoodUsed = 4},
+                new Furniture()  {Id = 8, Name = "Coffee Table", WoodUsed = 4, retailer = Fella},
+                new Furniture()  {Id = 9, Name = "Liquor Cabinet", WoodUsed = 2, retailer = Leg},
+                new Furniture()  {Id = 10, Name = "Couch", WoodUsed = 4, retailer = Chef},
 
-                new Furniture()  {Id = 11, Name = "Dining Table", WoodUsed = 5},
-                new Furniture()  {Id = 12, Name = "Wine Rack", WoodUsed = 1},
+                new Furniture()  {Id = 11, Name = "Dining Table", WoodUsed = 5, retailer = Fella},
+                new Furniture()  {Id = 12, Name = "Wine Rack", WoodUsed = 1, retailer = Fella},
 
-                new Furniture()  {Id = 13, Name = "Table", WoodUsed = 1},
-                new Furniture()  {Id = 14, Name = "Drawing board", WoodUsed = 6},
+                new Furniture()  {Id = 13, Name = "Table", WoodUsed = 1, retailer = Leg},
+                new Furniture()  {Id = 14, Name = "Drawing board", WoodUsed = 6, retailer = Chef},
 
-                new Furniture()  {Id = 15, Name = "Bookcase", WoodUsed = 3},
-                new Furniture()  {Id = 16, Name = "Desk", WoodUsed = 2},
+                new Furniture()  {Id = 15, Name = "Bookcase", WoodUsed = 3, retailer = Fella},
+                new Furniture()  {Id = 16, Name = "Desk", WoodUsed = 2, retailer = Leg},
 
             };
             var Oak = new Wood() { Id = 1, Name = "Oak wood", Price = 1000 };

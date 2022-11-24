@@ -50,6 +50,9 @@ namespace G0AVEG_ADT_2022_23_1.Repository
             dbContext.SaveChanges();
         }
 
-
+        public IQueryable<Wood> GetAll()
+        {
+            return dbContext.Woods;
+        }
     }
 }

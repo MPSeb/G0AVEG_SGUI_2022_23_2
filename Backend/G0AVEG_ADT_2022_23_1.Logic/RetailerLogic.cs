@@ -19,6 +19,10 @@ namespace G0AVEG_ADT_2022_23_1.Logic
 
         public void CreateRetailer(Retailer entry)
         {
+            if(entry.Name == null)
+            {
+                throw new Exception("Name can't be empty");
+            }
             _retailerRepository.Add(entry);
         }
 

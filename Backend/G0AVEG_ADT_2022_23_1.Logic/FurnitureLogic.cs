@@ -12,11 +12,13 @@ namespace G0AVEG_ADT_2022_23_1.Logic
     {
         public readonly IFurnitureRepository _furnitureRepository;
         public readonly IWoodRepository _woodRepository;
+        public readonly IRetailerRepository _retailerRepository;
 
-        public FurnitureLogic(IFurnitureRepository furnitureRepository, IWoodRepository woodRepository)
+        public FurnitureLogic(IFurnitureRepository furnitureRepository, IWoodRepository woodRepository, IRetailerRepository retailerRepository)
         {
             _furnitureRepository = furnitureRepository;
             _woodRepository = woodRepository;
+            _retailerRepository = retailerRepository;
         }
 
         public void AddFurnitureToWood(int furnitureId, int woodId)
@@ -40,8 +42,74 @@ namespace G0AVEG_ADT_2022_23_1.Logic
             _furnitureRepository.Update(furniture);
         }
 
+        public void RemoveFurnitureFromWood(int furnitureId, int woodId)
+        {
+            Furniture furniture = _furnitureRepository.GetFurniture(furnitureId);
+
+            if(furniture== null)
+            {
+                throw new Exception("Furniture does not exist");
+            }
+
+            Wood wood = _woodRepository.GetWood(woodId);
+
+            if(wood == null)
+            {
+                throw new Exception("Wood does not exist");
+            }
+
+            furniture.wood = null;
+
+            _furnitureRepository.Update(furniture);
+        }
+        public void AddRetailerToWood(int furnitureId, int retailId)
+        {
+            Furniture furniture = _furnitureRepository.GetFurniture(furnitureId);
+
+            if (furniture == null)
+            {
+                throw new Exception("Furniture doesn't exist");
+            }
+
+            Retailer retailer = _retailerRepository.GetRetailer(retailId);
+
+            if (retailer == null)
+            {
+                throw new Exception("Retailer is not real");
+            }
+
+            furniture.RetailerId = retailer.Id;
+
+            _furnitureRepository.Update(furniture);
+        }
+
+        public void RemoveFurnitureFromRetailer(int furnitureId, int retailId)
+        {
+            Furniture furniture = _furnitureRepository.GetFurniture(furnitureId);
+
+            if (furniture == null)
+            {
+                throw new Exception("Furniture does not exist");
+            }
+
+            Retailer retailer = _retailerRepository.GetRetailer(retailId);
+
+            if (retailer == null)
+            {
+                throw new Exception("Retailer does not exist");
+            }
+
+            furniture.retailer = null;
+
+            _furnitureRepository.Update(furniture);
+        }
+
         public void CreateFurniture(Furniture entry)
         {
+            if(entry.Name == null)
+            {
+                throw new Exception("Name cannot be empty");
+            }
             _furnitureRepository.Add(entry);
         }
 
@@ -64,5 +132,13 @@ namespace G0AVEG_ADT_2022_23_1.Logic
         {
             _furnitureRepository.Update(entry);
         }
+
+
+
+
+
+
+
+
     }
 }

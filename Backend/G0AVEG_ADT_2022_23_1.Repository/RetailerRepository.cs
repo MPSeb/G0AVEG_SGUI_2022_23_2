@@ -49,5 +49,10 @@ namespace G0AVEG_ADT_2022_23_1.Repository
             RetailerToUpdate.furnitures = entity.furnitures;
             dbContext.SaveChanges();
         }
+
+        public IQueryable<Retailer> GetAll()
+        {
+            return dbContext.Retailers;
+        }
     }
 }
