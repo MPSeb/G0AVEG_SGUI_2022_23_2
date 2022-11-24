@@ -88,5 +88,69 @@ namespace G0AVEG_ADT_2022_23_1.Test
             Furniture furniture = new Furniture { Name = null, RetailerId = 1, WoodUsed = 1 };
             Assert.That(() => this.fLogic.CreateFurniture(furniture), Throws.TypeOf<Exception>());
         }
+        [Test]
+        public void GetAllWoodTest()
+        {
+            List<Wood> woods = wLogic.GetWoods().ToList();
+
+            Assert.NotNull(woods);
+            Assert.AreEqual(2, woods.Count);
+        }
+        [Test]
+        public void GetRetailersTest()
+        {
+            List<Retailer> retailers = rLogic.GetRetailers().ToList();
+            Assert.NotNull(retailers);
+            Assert.AreEqual(2, retailers.Count);
+        }
+        [Test]
+        public void CreateTest()
+        {
+            Furniture furniture = new Furniture { Id = 3, Name = "Cutting Board", WoodUsed = 2, RetailerId = 2 };
+            fLogic._furnitureRepository.Add(furniture);
+            Assert.AreEqual(furniture, fLogic._furnitureRepository.GetFurniture(3));
+                
+        }
+        [Test]
+        public void NoExceptionTest()
+        {
+            Furniture furniture = new Furniture { Name = "OSB", RetailerId = 1, WoodUsed = 1 };
+            Assert.That(() => this.fLogic.CreateFurniture(furniture), Throws.Nothing);
+        }
+        [Test]
+        public void DoesRetailerSellWoodTest()
+        {
+            bool result = fLogic.DoesRetailerSellWood(1, 1);
+            bool expected = true;
+            Assert.That(result, Is.EqualTo(expected));
+        }
+        [Test]
+        public void DoesRetailerSellWoodTest2()
+        {
+            bool result = fLogic.DoesRetailerSellWood(1, 2);
+            bool expected = false;
+            Assert.That(result, Is.EqualTo(expected));
+        }
+        [Test]
+        public void AverageWoodPriceOfRetailerTest()
+        {
+            int result = fLogic.avgWoodPriceOfRetailer(1);
+            int expected = 1500;
+            Assert.That(result, Is.EqualTo(expected));
+        }
+        [Test]
+        public void AvgFurnPerRetailerTest()
+        {
+            double value = fLogic.AverageFurnPerRetailer();
+            double expected = 1;
+            Assert.That(value, Is.EqualTo(expected));
+        }
+        [Test]
+        public void WoodBelowPriceTest()
+        {
+            int value = fLogic.WoodUsedInFurnBelowPrice(1400);
+            int expected = 1;
+            Assert.That(value, Is.EqualTo(expected));
+        }
     }
 }
