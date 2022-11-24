@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace G0AVEG_ADT_2022_23_1.Repository
 {
-    public class FurnitureRepository
+    public class FurnitureRepository : IFurnitureRepository
     {
         FRWDbContext dbContext;
         public FurnitureRepository(FRWDbContext dbContext)
