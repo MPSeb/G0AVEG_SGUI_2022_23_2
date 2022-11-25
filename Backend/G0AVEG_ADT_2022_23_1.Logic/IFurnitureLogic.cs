@@ -14,5 +14,11 @@ namespace G0AVEG_ADT_2022_23_1.Logic
         void CreateFurniture(Furniture entry);
         void RemoveFurniture(int id);
         void UpdateFurniture(Furniture entry);
+
+        int[] woodsIdsForRetailer(int retailerId);
+        bool DoesRetailerSellWood(int retailerId, int woodId);
+        int avgWoodPriceOfRetailer(int retailerId);
+        double AverageFurnPerRetailer();
+        int WoodUsedInFurnBelowPrice(int priceLim);
     }
 }

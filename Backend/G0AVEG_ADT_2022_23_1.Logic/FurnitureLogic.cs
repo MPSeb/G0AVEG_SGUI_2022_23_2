@@ -135,9 +135,9 @@ namespace G0AVEG_ADT_2022_23_1.Logic
 
         //Non-CRUD methods
 
-        public int[] woodsIdsForRetailer(int roomId)
+        public int[] woodsIdsForRetailer(int retailerId)
         {
-            IEnumerable<Furniture> furnitures = _furnitureRepository.GetAll().ToList().Where(f => f.RetailerId == roomId);
+            IEnumerable<Furniture> furnitures = _furnitureRepository.GetAll().ToList().Where(f => f.RetailerId == retailerId);
             IEnumerable<Wood> woods = _woodRepository.GetAll().ToList();
             int add = 0;
             for (int i = 1; i < woods.Count(); i++)

@@ -14,8 +14,4 @@
     <ProjectReference Include="..\G0AVEG_ADT_2022_23_1.Logic\G0AVEG_ADT_2022_23_1.Logic.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
 </Project>
