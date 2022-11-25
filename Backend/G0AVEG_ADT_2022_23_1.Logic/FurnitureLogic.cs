@@ -177,6 +177,7 @@ namespace G0AVEG_ADT_2022_23_1.Logic
         public int avgWoodPriceOfRetailer(int retailerId)
         {
             Retailer retailer = _retailerRepository.GetRetailer(retailerId);
+
             int count = 0;
             int price = 0;
             foreach (Furniture f in retailer.furnitures)
@@ -203,8 +204,8 @@ namespace G0AVEG_ADT_2022_23_1.Logic
 
         public int WoodUsedInFurnBelowPrice(int priceLim)
         {
-            IEnumerable<Wood> woods = _woodRepository.GetAll().ToList().Where(t => t.Price < priceLim);
-            int number = _woodRepository.GetAll().ToList().Count();
+            IEnumerable<Wood> woods = _woodRepository.GetAll().ToList().Where(t => t.Price <= priceLim);
+            int number = _woodRepository.GetAll().ToList().Count() + 1;
             IEnumerable<Furniture> furnitures = _furnitureRepository.GetAll().ToList();
             int[] array = new int[number];
             int counter = 0;

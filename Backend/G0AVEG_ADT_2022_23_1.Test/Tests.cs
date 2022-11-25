@@ -62,12 +62,14 @@ namespace G0AVEG_ADT_2022_23_1.Test
                 new Retailer()
                 {
                     Id = 1,
-                    Name = "Gamers Union"
+                    Name = "Gamers Union",
+                    furnitures = Furnitures.Where(f => f.RetailerId == 1).ToList()
                 },
                 new Retailer()
                 {
                     Id = 2,
-                    Name = "Fanatics of Furinitures"
+                    Name = "Fanatics of Furinitures",
+                    furnitures = Furnitures.Where(f => f.RetailerId == 2).ToList()
                 }
             }.AsQueryable();
 
@@ -102,14 +104,6 @@ namespace G0AVEG_ADT_2022_23_1.Test
             List<Retailer> retailers = rLogic.GetRetailers().ToList();
             Assert.NotNull(retailers);
             Assert.AreEqual(2, retailers.Count);
-        }
-        [Test]
-        public void CreateTest()
-        {
-            Furniture furniture = new Furniture { Id = 3, Name = "Cutting Board", WoodUsed = 2, RetailerId = 2 };
-            fLogic._furnitureRepository.Add(furniture);
-            Assert.AreEqual(furniture, fLogic._furnitureRepository.GetFurniture(3));
-                
         }
         [Test]
         public void NoExceptionTest()
@@ -150,6 +144,13 @@ namespace G0AVEG_ADT_2022_23_1.Test
         {
             int value = fLogic.WoodUsedInFurnBelowPrice(1400);
             int expected = 1;
+            Assert.That(value, Is.EqualTo(expected));
+        }
+        [Test]
+        public void WoodBelowPriceTest2()
+        {
+            int value = fLogic.WoodUsedInFurnBelowPrice(1501);
+            int expected = 2;
             Assert.That(value, Is.EqualTo(expected));
         }
     }
