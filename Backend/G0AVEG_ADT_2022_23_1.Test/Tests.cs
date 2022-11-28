@@ -63,13 +63,13 @@ namespace G0AVEG_ADT_2022_23_1.Test
                 {
                     Id = 1,
                     Name = "Gamers Union",
-                    furnitures = Furnitures.Where(f => f.RetailerId == 1).ToList()
+                    furnitures = Furnitures.ToList()
                 },
                 new Retailer()
                 {
                     Id = 2,
                     Name = "Fanatics of Furinitures",
-                    furnitures = Furnitures.Where(f => f.RetailerId == 2).ToList()
+                    furnitures = Furnitures.ToList()
                 }
             }.AsQueryable();
 
@@ -79,6 +79,10 @@ namespace G0AVEG_ADT_2022_23_1.Test
                 .Returns(Retailers);
             mockWoodRepository.Setup((y) => y.GetAll())
                 .Returns(Woods);
+
+            mockRetailerRepository.Setup((x) => x.GetRetailer(It.IsAny<int>())).Returns<int>((v) => Retailers.Where(r => r.Id == v).FirstOrDefault());
+            mockFurnitureRepository.Setup((x) => x.GetFurniture(It.IsAny<int>())).Returns<int>((v) => Furnitures.Where(r => r.Id == v).FirstOrDefault());
+            mockWoodRepository.Setup((x) => x.GetWood(It.IsAny<int>())).Returns<int>((v) => Woods.Where(r => r.Id == v).FirstOrDefault());
 
             rLogic = new RetailerLogic(mockRetailerRepository.Object);
             wLogic = new WoodLogic(mockWoodRepository.Object);
@@ -121,7 +125,7 @@ namespace G0AVEG_ADT_2022_23_1.Test
         [Test]
         public void DoesRetailerSellWoodTest2()
         {
-            bool result = fLogic.DoesRetailerSellWood(1, 2);
+            bool result = fLogic.DoesRetailerSellWood(1, 3);
             bool expected = false;
             Assert.That(result, Is.EqualTo(expected));
         }
@@ -129,7 +133,7 @@ namespace G0AVEG_ADT_2022_23_1.Test
         public void AverageWoodPriceOfRetailerTest()
         {
             int result = fLogic.avgWoodPriceOfRetailer(1);
-            int expected = 1500;
+            int expected = 1000;
             Assert.That(result, Is.EqualTo(expected));
         }
         [Test]

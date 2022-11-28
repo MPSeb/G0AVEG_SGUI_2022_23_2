@@ -164,7 +164,7 @@ namespace G0AVEG_ADT_2022_23_1.Logic
         {
             Retailer retailer = _retailerRepository.GetRetailer(retailerId);
             bool result = false;
-            foreach (Furniture f in retailer.furnitures)
+            foreach (var f in retailer.furnitures)
             {
                 if(f.WoodUsed == woodId)
                 {
@@ -180,7 +180,7 @@ namespace G0AVEG_ADT_2022_23_1.Logic
 
             int count = 0;
             int price = 0;
-            foreach (Furniture f in retailer.furnitures)
+            foreach (var f in retailer.furnitures)
             {
                 count++;
                 if (f.WoodUsed != null)
