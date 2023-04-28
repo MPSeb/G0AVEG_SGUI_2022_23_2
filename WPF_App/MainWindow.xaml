@@ -21,9 +21,9 @@
             <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" ItemsSource="{Binding retailers}" SelectedItem="{Binding SelectedRetailer}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <WrapPanel>
+                        <StackPanel>
                             <Label Content="{Binding Name}"></Label>
-                        </WrapPanel>
+                        </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>

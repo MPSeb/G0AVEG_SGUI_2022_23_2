@@ -70,17 +70,23 @@ namespace WPF_App.ViewModels
         {
             this.restService = restService;
             retailers.Add(new Retailer { Name = "test", Id = 1 });
-            CreateRetailer = new RelayCommand(async () => { await restService.Post(new Retailer { Name = Name }, "Retailer"); DownloadRetailers(); }, () => !string.IsNullOrEmpty(Name));
+            CreateRetailer = new RelayCommand(async () => { await restService.Post(new Retailer { Name = Name }, "retailer"); DownloadRetailers(); }, () => !string.IsNullOrEmpty(Name));
             UpdateRetailer = new RelayCommand(() =>
             {
-                
+                SelectedRetailer.Name = Name;
+                restService.Put(SelectedRetailer, "retailer");
             }, () => !string.IsNullOrEmpty(Name));
+            DownloadRetailers();
         }
         private void DownloadRetailers()
         {
-            
+            retailers.Clear();
+            foreach(var retailer in restService.Get<Retailer>("retailer"))
+            {
+                retailers.Add(retailer);
+            }
         }
-        public MainWindowViewModel()
+        public MainWindowViewModel() : this(Ioc.Default.GetService<RestService>())
         {
 
         }
