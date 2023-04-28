@@ -11,10 +11,10 @@ namespace G0AVEG_ADT_2022_23_1.Data
         public DbSet<Wood> Woods { get; set; }
         public DbSet<Furniture> Furnitures { get; set; }
         public DbSet<Retailer> Retailers { get; set; }
-        public FRWDbContext()
-        {
-            Database.EnsureCreated();
-        }
+        //public FRWDbContext()
+        //{
+        //    Database.EnsureCreated();
+        //}
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
