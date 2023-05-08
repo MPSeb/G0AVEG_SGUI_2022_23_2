@@ -68,7 +68,7 @@ namespace WPF_App.Services
         public async Task Post<T>(T item, string endpoint)
         {
             HttpResponseMessage response =
-                client.PostAsJsonAsync(endpoint, item).GetAwaiter().GetResult();
+                await client.PostAsJsonAsync(endpoint, item);
 
             response.EnsureSuccessStatusCode();
         }

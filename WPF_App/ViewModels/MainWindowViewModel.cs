@@ -61,7 +61,6 @@ namespace WPF_App.ViewModels
             }
         }
         private RestService restService;
-        FRWDbContext dbContext = new FRWDbContext();
         public ObservableCollection<Furniture> furnitures { get; } = new ObservableCollection<Furniture>();
         public ObservableCollection<Wood> woods { get; } = new ObservableCollection<Wood>();
         public ObservableCollection<Retailer> retailers { get; } = new ObservableCollection<Retailer>();
@@ -76,6 +75,11 @@ namespace WPF_App.ViewModels
                 SelectedRetailer.Name = Name;
                 restService.Put(SelectedRetailer, "retailer");
             }, () => !string.IsNullOrEmpty(Name));
+            RemoveRetailer = new RelayCommand(() =>
+            {
+                restService.Delete(selectedRetailer.Id, "retailer");
+                retailers.Remove(SelectedRetailer);
+            }, () => SelectedRetailer != null);
             DownloadRetailers();
         }
         private void DownloadRetailers()

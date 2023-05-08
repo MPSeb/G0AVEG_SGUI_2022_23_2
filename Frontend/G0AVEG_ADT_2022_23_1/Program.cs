@@ -70,7 +70,6 @@ namespace G0AVEG_ADT_2022_23_1
             int avgwoodpriceofretailer = rest.GetSingle<int>("stat/avgwoodpriceofretailer/1");
             double averagefurnperretailer = rest.GetSingle<double>("stat/averagefurnperretailer/1");
             int woodusedinfurnbelowprice = rest.GetSingle<int>("stat/woodusedinfurniturebelowprice/1400");
-
         }
     }
 }
