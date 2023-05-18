@@ -1,9 +1,8 @@
-﻿using G0AVEG_ADT_2022_23_1.Client;
-using G0AVEG_ADT_2022_23_1.Models;
+﻿using G0AVEG_ADT_2022_23_1.Models;
 using System;
 using System.Collections.Generic;
 
-namespace G0AVEG_ADT_2022_23_1
+namespace G0AVEG_ADT_2022_23_1.Client
 {
     class Program
     {
@@ -13,25 +12,25 @@ namespace G0AVEG_ADT_2022_23_1
 
             RestService rest = new RestService("http://localhost:63958");
 
-            rest.Post<Wood>(new Wood()
+            rest.Post(new Wood()
             {
                 Id = 1,
                 Name = "Bamboo"
             }, "wood");
-            rest.Put<Wood>(new Wood()
+            rest.Put(new Wood()
             {
                 Id = 2,
                 Name = "Charcoal"
             }, "wood");
 
-            rest.Post<Furniture>(new Furniture()
+            rest.Post(new Furniture()
             {
                 Id = 1,
                 Name = "Spring trap",
                 WoodUsed = 1,
                 RetailerId = 1
             }, "furniture");
-            rest.Put<Furniture>(new Furniture()
+            rest.Put(new Furniture()
             {
                 Id = 2,
                 Name = "Glass shards",
@@ -40,12 +39,12 @@ namespace G0AVEG_ADT_2022_23_1
 
             }, "furniture");
 
-            rest.Put<Retailer>(new Retailer()
+            rest.Put(new Retailer()
             {
                 Id = 1,
                 Name = "Rugpull corp"
             }, "retailer");
-            rest.Put<Retailer>(new Retailer()
+            rest.Put(new Retailer()
             {
                 Id = 2,
                 Name = "Scammers"

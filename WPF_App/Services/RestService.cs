@@ -24,14 +24,7 @@ namespace WPF_App.Services
             client.DefaultRequestHeaders.Accept.Add(
                 new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue
                 ("application/json"));
-            try
-            {
-                client.GetAsync("").GetAwaiter().GetResult();
-            }
-            catch (HttpRequestException)
-            {
-                throw new ArgumentException("Endpoint is not available!");
-            }
+
         }
         public List<T> Get<T>(string endpoint)
         {

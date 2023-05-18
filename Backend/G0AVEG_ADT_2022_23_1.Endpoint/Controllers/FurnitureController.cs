@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 
 
-namespace G0AVEG_HFT_2021221.Endpoint.Controllers
+namespace G0AVEG_ADT_2022_23_1.Endpoint.Controllers
 {
     [Route("[controller]")]
     [ApiController]

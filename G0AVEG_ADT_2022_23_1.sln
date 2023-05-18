@@ -55,6 +55,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Others", "Others", "{516ED6
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPF_App", "WPF_App\WPF_App.csproj", "{3EF6C304-73E1-4AF6-AF5E-74880CC9C32D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptApp", "JavaScriptApp\JavaScriptApp.csproj", "{F1A4067D-72C6-4984-A387-FED431A23640}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +95,10 @@ Global
 		{3EF6C304-73E1-4AF6-AF5E-74880CC9C32D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3EF6C304-73E1-4AF6-AF5E-74880CC9C32D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3EF6C304-73E1-4AF6-AF5E-74880CC9C32D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1A4067D-72C6-4984-A387-FED431A23640}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1A4067D-72C6-4984-A387-FED431A23640}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1A4067D-72C6-4984-A387-FED431A23640}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1A4067D-72C6-4984-A387-FED431A23640}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

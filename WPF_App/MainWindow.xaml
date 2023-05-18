@@ -28,15 +28,11 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <StackPanel Grid.Column="1">
-            <ListBox>
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <WrapPanel>
-                            <Label></Label>
-                        </WrapPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+            <Label Content="Name"></Label>
+            <TextBox TextWrapping="Wrap"></TextBox>
+            <Button Content="Add Retailer" Command="{Binding CreateRetailer}"></Button>
+            <Button Content="Update Retailer" Command="{Binding UpdateRetailer}"></Button>
+            <Button Content="Remove Retailer" Command="{Binding RemoveRetailer}"></Button>
         </StackPanel>
         <StackPanel Grid.Column="2">
             <ListBox>
