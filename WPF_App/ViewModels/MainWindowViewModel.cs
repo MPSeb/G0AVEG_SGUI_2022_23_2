@@ -22,7 +22,7 @@ namespace WPF_App.ViewModels
         public ICommand EditFurniture { get; set; }
         public ICommand WoodsIdsForRetailer{get; set; }
         public ICommand DoesRetailerSellWood{get;set; }
-        public ICommand avgWoodPriceOfRetailer{get;set; }
+        public ICommand AvgWoodPriceOfRetailer{get;set; }
         public ICommand AverageFurnPerRetailer { get; set; }
         public ICommand WoodUsedInFurnBelowPrice{get; set; }
 
