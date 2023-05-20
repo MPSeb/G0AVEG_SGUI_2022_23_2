@@ -25,12 +25,9 @@ namespace WPF_App.ViewModels
         public ICommand AvgWoodPriceOfRetailer{get;set; }
         public ICommand AverageFurnPerRetailer { get; set; }
         public ICommand WoodUsedInFurnBelowPrice{get; set; }
-
-
         public ICommand CreateRetailer { get; set; }
         public ICommand RemoveRetailer { get; set; }
         public ICommand UpdateRetailer { get; set; }
-
         public ICommand CreateWood { get; set; }
         public ICommand RemoveWood { get; set; }
         public ICommand UpdateWood { get; set; }
