@@ -75,6 +75,18 @@ namespace WPF_App.ViewModels
             }
         }
 
+        private string nameFurniture;
+        public string NameFurniture
+        {
+            get { return nameFurniture; }
+            set
+            {
+                SetProperty(ref nameFurniture, value);
+                (CreateFurniture as RelayCommand).NotifyCanExecuteChanged();
+                (UpdateFurniture as RelayCommand).NotifyCanExecuteChanged();
+            }
+        }
+
         private Retailer selectedRetailer;
         public Retailer SelectedRetailer
         {
@@ -113,7 +125,7 @@ namespace WPF_App.ViewModels
             woods.Add(new Wood { Name = "test", Id = 100 });
             furnitures.Add(new Furniture { Name = "test", Id = 100 });
 
-
+            
             CreateRetailer = new RelayCommand(async () => { await restService.Post(new Retailer { Name = Name }, "retailer"); DownloadData(); }, () => !string.IsNullOrEmpty(Name));
             UpdateRetailer = new RelayCommand(() =>
             {
@@ -149,6 +161,8 @@ namespace WPF_App.ViewModels
                 restService.Delete(selectedFurniture.Id, "furniture");
                 furnitures.Remove(SelectedFurniture);
             }, () => SelectedFurniture != null);
+
+
 
             DownloadData();
 
