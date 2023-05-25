@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_App"
         xmlns:vms="clr-namespace:WPF_App.ViewModels"
-        xmlns:retailer="clr-namespace:G0AVEG_ADT_2022_23_1.Models;assembly=G0AVEG_ADT_2022_23_1.Models"
+        xmlns:data="clr-namespace:G0AVEG_ADT_2022_23_1.Models;assembly=G0AVEG_ADT_2022_23_1.Models"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Window.DataContext>
@@ -18,6 +18,24 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
+        <ListBox d:ItemsSource="{d:SampleData ItemCount=10}" ItemsSource="{Binding retailers}" SelectedItem="{Binding SelectedRetailer}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <Label Content="{Binding Name}"></Label>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ListBox d:ItemsSource="{d:SampleData ItemCount=10}" ItemsSource="{Binding woods}" SelectedItem="{Binding SelectedWood}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <Label Content="{Binding WoodName}"></Label>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
         <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" ItemsSource="{Binding retailers}" SelectedItem="{Binding SelectedRetailer}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -27,34 +45,24 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <StackPanel Grid.Column="1">
-            <Label Content="Name"></Label>
+        <StackPanel Grid.Column="4">
+            <Label Content="Retailer Name"></Label>
             <TextBox TextWrapping="Wrap"></TextBox>
             <Button Content="Add Retailer" Command="{Binding CreateRetailer}"></Button>
             <Button Content="Update Retailer" Command="{Binding UpdateRetailer}"></Button>
             <Button Content="Remove Retailer" Command="{Binding RemoveRetailer}"></Button>
-        </StackPanel>
-        <StackPanel Grid.Column="2">
-            <ListBox>
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <WrapPanel>
-                            <Label></Label>
-                        </WrapPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </StackPanel>
-        <StackPanel Grid.Column="3">
-            <ListBox>
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <WrapPanel>
-                            <Label></Label>
-                        </WrapPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+
+            <Label Content="Wood Name"></Label>
+            <TextBox TextWrapping="Wrap"></TextBox>
+            <Button Content="Add Wood" Command="{Binding CreateWood}"></Button>
+            <Button Content="Update Wood" Command="{Binding UpdateWood}"></Button>
+            <Button Content="Remove Wood" Command="{Binding RemoveWood}"></Button>
+
+            <Label Content="Furniture Name"></Label>
+            <TextBox TextWrapping="Wrap"></TextBox>
+            <Button Content="Add Furniture" Command="{Binding CreateFurniture}"></Button>
+            <Button Content="Update Furniture" Command="{Binding UpdateFurniture}"></Button>
+            <Button Content="Remove Furniture" Command="{Binding RemoveFurniture}"></Button>
         </StackPanel>
     </Grid>
 </Window>
