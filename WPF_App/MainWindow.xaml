@@ -27,20 +27,20 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <ListBox d:ItemsSource="{d:SampleData ItemCount=10}" ItemsSource="{Binding woods}" SelectedItem="{Binding SelectedWood}">
+        <ListBox d:ItemsSource="{d:SampleData ItemCount=10}" ItemsSource="{Binding woods}" SelectedItem="{Binding SelectedWood}" Grid.Column="1">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel>
+                    <StackPanel Grid.Column="2">
                         <Label Content="{Binding WoodName}"></Label>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" ItemsSource="{Binding retailers}" SelectedItem="{Binding SelectedRetailer}">
+        <ListBox d:ItemsSource="{d:SampleData ItemCount=10}" ItemsSource="{Binding retailers}" SelectedItem="{Binding SelectedRetailer}" Grid.Column="2">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <Label Content="{Binding Name}"></Label>
+                        <Label Content="{Binding NameFurniture}"></Label>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
