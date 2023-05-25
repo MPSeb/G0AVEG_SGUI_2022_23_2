@@ -7,16 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\js\index.js" />
+    <Content Remove="wwwroot\js\Connection.js" />
   </ItemGroup>
 
   <ItemGroup>
-    <_ContentIncludedByDefault Remove="wwwroot\js\index.js" />
-    <_ContentIncludedByDefault Remove="wwwroot\lib\htmlpage.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\Connection.js" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\js\index.js" />
+    <None Include="wwwroot\js\Connection.js" />
   </ItemGroup>
 
 </Project>
