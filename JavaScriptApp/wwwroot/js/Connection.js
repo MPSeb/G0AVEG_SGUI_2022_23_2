@@ -4,6 +4,8 @@
     .build();
 
 const retailers = new Map();
+const woods = new Map();
+const furnitures = new Map();
 let selectedRetailer = -1;
 let selectedWood = -1;
 let selectedFurniture = -1;

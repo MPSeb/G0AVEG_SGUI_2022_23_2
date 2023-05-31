@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace G0AVEG_ADT_2022_23_1.Endpoint.Controllers
 {
-    [Route("[Controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class RetailerController : ControllerBase
     {

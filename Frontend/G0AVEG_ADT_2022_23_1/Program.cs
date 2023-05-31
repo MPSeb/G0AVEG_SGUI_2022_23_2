@@ -10,6 +10,7 @@ namespace G0AVEG_ADT_2022_23_1.Client
         {
             System.Threading.Thread.Sleep(6000);
 
+
             RestService rest = new RestService("http://localhost:63958/", "program");
 
             rest.Post(new Wood()

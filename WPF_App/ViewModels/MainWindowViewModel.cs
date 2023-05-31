@@ -3,12 +3,14 @@ using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using G0AVEG_ADT_2022_23_1.Data;
 using G0AVEG_ADT_2022_23_1.Models;
+using Microsoft.AspNetCore.SignalR.Client;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using WPF_App.Services;
 
@@ -102,6 +104,8 @@ namespace WPF_App.ViewModels
             }
         }
 
+        HubConnection hubConnection;
+
         private string name;
         public string Name
         {
@@ -118,8 +122,18 @@ namespace WPF_App.ViewModels
         public ObservableCollection<Wood> woods { get; } = new ObservableCollection<Wood>();
         public ObservableCollection<Retailer> retailers { get; } = new ObservableCollection<Retailer>();
 
-        public MainWindowViewModel(RestService restService)
+        public MainWindowViewModel(RestService restService, HubConnection connection)
         {
+            this.hubConnection = connection;
+            this.hubConnection.On("onRetailerCreated", (Retailer a) => {
+                Application.Current.Dispatcher.Invoke(() => { retailers.Add(a); });
+            });
+            this.hubConnection.On("onWoodCreated", (Wood a) => {
+                Application.Current.Dispatcher.Invoke(() => { woods.Add(a); });
+            });
+            this.hubConnection.On("onWoodCreated", (Furniture a) => {
+                Application.Current.Dispatcher.Invoke(() => { furnitures.Add(a); });
+            });
             this.restService = restService;
             retailers.Add(new Retailer { Name = "test", Id = 100 });
             woods.Add(new Wood { Name = "test", Id = 100 });
@@ -185,7 +199,7 @@ namespace WPF_App.ViewModels
                 furnitures.Add(furniture);
             }
         }
-        public MainWindowViewModel() : this(Ioc.Default.GetService<RestService>())
+        public MainWindowViewModel() : this(Ioc.Default.GetService<RestService>(), Ioc.Default.GetService<HubConnection>())
         {
 
         }
