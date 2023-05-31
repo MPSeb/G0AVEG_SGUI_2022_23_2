@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,9 +12,27 @@ namespace WPF_App.Services
     {
         HttpClient client;
 
-        public RestService(string baseurl)
+        public RestService(string baseurl, string endpoint = "swagger/htmlpage.html")
         {
+            bool pinged = false;
+            do
+            {
+                pinged = Ping(baseurl + endpoint);
+            } while (pinged == false);
             Init(baseurl);
+        }
+        private bool Ping(string url)
+        {
+            try
+            {
+                WebClient wc = new WebClient();
+                wc.DownloadData(url);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         private void Init(string baseurl)

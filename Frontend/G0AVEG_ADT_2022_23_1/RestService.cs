@@ -11,7 +11,7 @@ namespace G0AVEG_ADT_2022_23_1.Client
     {
         HttpClient client;
 
-        public RestService(string baseurl)
+        public RestService(string baseurl, string endpoint = "swagger")
         {
             Init(baseurl);
         }

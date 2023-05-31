@@ -1,5 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.DependencyInjection;
+using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -19,7 +21,13 @@ namespace WPF_App
     {
         public App()
         {
-            RestService restService = new RestService("http://localhost:63958");
+            var connection = new HubConnectionBuilder()
+            .WithUrl("http://localhost:63958/hub")
+            .AddJsonProtocol()
+            .WithAutomaticReconnect()
+            .ConfigureLogging((log_builder) => log_builder.SetMinimumLevel(LogLevel.Trace)).Build();
+            connection.StartAsync().Wait();
+            RestService restService = new RestService("http://localhost:63958/");
             Ioc.Default.ConfigureServices(new ServiceCollection().AddSingleton<RestService>(restService).BuildServiceProvider());
         }
 
