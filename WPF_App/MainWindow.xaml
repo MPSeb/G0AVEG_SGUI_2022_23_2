@@ -47,19 +47,19 @@
         </ListBox>
         <StackPanel Grid.Column="4">
             <Label Content="Retailer Name"></Label>
-            <TextBox TextWrapping="Wrap"></TextBox>
+            <TextBox TextWrapping="Wrap" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <Button Content="Add Retailer" Command="{Binding CreateRetailer}"></Button>
             <Button Content="Update Retailer" Command="{Binding UpdateRetailer}"></Button>
             <Button Content="Remove Retailer" Command="{Binding RemoveRetailer}"></Button>
 
             <Label Content="Wood Name"></Label>
-            <TextBox TextWrapping="Wrap"></TextBox>
+            <TextBox TextWrapping="Wrap" Text="{Binding NameWood, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <Button Content="Add Wood" Command="{Binding CreateWood}"></Button>
             <Button Content="Update Wood" Command="{Binding UpdateWood}"></Button>
             <Button Content="Remove Wood" Command="{Binding RemoveWood}"></Button>
 
             <Label Content="Furniture Name"></Label>
-            <TextBox TextWrapping="Wrap"></TextBox>
+            <TextBox TextWrapping="Wrap" Text="{Binding NameFurniture, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <Button Content="Add Furniture" Command="{Binding CreateFurniture}"></Button>
             <Button Content="Update Furniture" Command="{Binding UpdateFurniture}"></Button>
             <Button Content="Remove Furniture" Command="{Binding RemoveFurniture}"></Button>

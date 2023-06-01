@@ -26,7 +26,7 @@ namespace WPF_App
             .AddJsonProtocol()
             .WithAutomaticReconnect()
             .ConfigureLogging((log_builder) => log_builder.SetMinimumLevel(LogLevel.Trace)).Build();
-            connection.StartAsync().Wait();
+             connection.StartAsync().Wait();
             RestService restService = new RestService("http://localhost:63958/");
             Ioc.Default.ConfigureServices(new ServiceCollection().AddSingleton<RestService>(restService).BuildServiceProvider());
         }

@@ -104,8 +104,6 @@ namespace WPF_App.ViewModels
             }
         }
 
-        HubConnection hubConnection;
-
         private string name;
         public string Name
         {
@@ -117,6 +115,9 @@ namespace WPF_App.ViewModels
                 (UpdateRetailer as RelayCommand).NotifyCanExecuteChanged();
             }
         }
+
+        HubConnection hubConnection;
+
         private RestService restService;
         public ObservableCollection<Furniture> furnitures { get; } = new ObservableCollection<Furniture>();
         public ObservableCollection<Wood> woods { get; } = new ObservableCollection<Wood>();
